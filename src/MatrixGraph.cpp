@@ -30,12 +30,35 @@ void MatrixGraph::AddEdge(int from, int to)
 
 void MatrixGraph::GetNextVertices(int vertex, std::vector<int>& vertices) const
 {
+	if(vertex > VerticesCount())
+	{
+		std::cout << "Incorect vertex." << std::endl;
+		return;
+	}
+	for(int i = 0; i < _vertices.size(); i++)
+	{
+		if(_vertices[vertex][i] == true)
+		{
+			vertices.push_back(i);
+		}
+	}
 
 }
 
 void MatrixGraph::GetPrevVertices(int vertex, std::vector<int>& vertices) const
 {
-
+	if(vertex > VerticesCount())
+	{
+		std::cout << "Incorect vertex." << std::endl;
+		return;
+	}
+	for(int i = 0; i < _vertices.size(); i++)
+	{
+		if(_vertices[i][vertex] == true)
+		{
+			vertices.push_back(i);
+		}
+	}
 }
 
 void MatrixGraph::ShowGraph() const
