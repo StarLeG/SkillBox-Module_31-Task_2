@@ -9,6 +9,9 @@ class MatrixGraph : public IGraph
 public:
 	MatrixGraph();
 
+    MatrixGraph(const MatrixGraph& other);
+    ~MatrixGraph();
+
 
 
 	// метод выводит на экран граф
@@ -27,9 +30,16 @@ public:
 
 	// Для конкретной вершины метод выводит в вектор “вершины” все вершины, из которых можно дойти по ребру в данную
 	virtual void GetPrevVertices(int vertex, std::vector<int>& vertices) const override;
+
+
 private:
-	std::vector<std::vector <bool>> _vertices;
-	int _vertex;
+	bool** _graph;
+	int _size;
+	int _capacity; // вместимость
+
+
+	void resize(int newSize);
+
 };
 
 
