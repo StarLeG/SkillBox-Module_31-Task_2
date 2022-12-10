@@ -88,27 +88,29 @@ void MatrixGraph::resize(int newSize)
 			delete[] newGraph[i];
 		}
 		delete[] newGraph;
+		this->_size = newSize;
 		return;
 	}
-	//****************************************
+
+		//****************************************
 
 
-	this->_size = newSize;
-	// Увеличиваем вместимость
-	this->_capacity += newSize;
-	//Создаем рабочий массив в памяти и заполняем его нулями
-	_graph = new bool* [this->_capacity];
-	for (int i = 0; i < this->_capacity; i++)
-	{
-		_graph[i] = new bool[this->_capacity];
-	}
-	for (int i = 0; i < this->_capacity; i++)
-	{
-		for (int j = 0; j < this->_capacity; j++)
+		this->_size = newSize;
+		// Увеличиваем вместимость
+		this->_capacity += newSize;
+		//Создаем рабочий массив в памяти и заполняем его нулями
+		_graph = new bool* [this->_capacity];
+		for (int i = 0; i < this->_capacity; i++)
 		{
-			_graph[j][i] = false;
+			_graph[i] = new bool[this->_capacity];
 		}
-	}
+		for (int i = 0; i < this->_capacity; i++)
+		{
+			for (int j = 0; j < this->_capacity; j++)
+			{
+				_graph[j][i] = false;
+			}
+		}
 
 
 }
@@ -128,16 +130,19 @@ void MatrixGraph::AddEdge(int from, int to)
 	{
 		newSize = from;
 	}
-	else if (to > this->_size)
+	 if (to > this->_size)
 	{
 		newSize = to;
 	}
-	else
-	{
-		newSize = this->_size;
-	}
+
+	 if (this->_size >= from && this->_size >= to)
+	 {
+		 newSize = this->_size;
+	 }
 
 	resize(newSize);
+
+	this->_graph[to - 1][from - 1] = true;
 
 
 }
