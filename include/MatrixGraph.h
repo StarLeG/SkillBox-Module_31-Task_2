@@ -10,6 +10,7 @@ public:
 	MatrixGraph();
 
     MatrixGraph(const MatrixGraph& other);
+	MatrixGraph &operator=(const MatrixGraph& other);
     ~MatrixGraph();
 
 
@@ -35,7 +36,7 @@ public:
 private:
 	bool** _graph;
 	int _size;
-	int _capacity; // вместимость
+
 
 
 	void resize(int newSize);

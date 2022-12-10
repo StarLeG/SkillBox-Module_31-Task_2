@@ -4,13 +4,34 @@ MatrixGraph::MatrixGraph()
 {
 	this->_size = 0;
 	this->_graph = nullptr;
-	this->_capacity = 0;
+
 }
 
 MatrixGraph::MatrixGraph(const MatrixGraph& other)
 {
+	this->operator=(other);
+
+}
+
+MatrixGraph& MatrixGraph::operator=(const MatrixGraph& other)
+{
+	if (this != &other)
+	{
+		if (this->_graph != nullptr)
+		{
+			for (int i = 0; i < this->_size; i++)
+			{
+				delete[] this->_graph[i];
+			}
+			delete[] this->_graph;
+		}
+		this->_size = other._size;
+		this->_graph = other._graph;
 
 
+	}
+
+	return *this;
 }
 
 MatrixGraph::~MatrixGraph()
@@ -92,25 +113,25 @@ void MatrixGraph::resize(int newSize)
 		return;
 	}
 
-		//****************************************
+	//****************************************
 
 
-		this->_size = newSize;
-		// Увеличиваем вместимость
-		this->_capacity += newSize;
-		//Создаем рабочий массив в памяти и заполняем его нулями
-		_graph = new bool* [this->_capacity];
-		for (int i = 0; i < this->_capacity; i++)
+	this->_size = newSize;
+	// Увеличиваем вместимость
+
+	//Создаем рабочий массив в памяти и заполняем его нулями
+	_graph = new bool* [newSize];
+	for (int i = 0; i < newSize; i++)
+	{
+		_graph[i] = new bool[newSize];
+	}
+	for (int i = 0; i < newSize; i++)
+	{
+		for (int j = 0; j < newSize; j++)
 		{
-			_graph[i] = new bool[this->_capacity];
+			_graph[j][i] = false;
 		}
-		for (int i = 0; i < this->_capacity; i++)
-		{
-			for (int j = 0; j < this->_capacity; j++)
-			{
-				_graph[j][i] = false;
-			}
-		}
+	}
 
 
 }
@@ -130,15 +151,15 @@ void MatrixGraph::AddEdge(int from, int to)
 	{
 		newSize = from;
 	}
-	 if (to > this->_size)
+	if (to > this->_size)
 	{
 		newSize = to;
 	}
 
-	 if (this->_size >= from && this->_size >= to)
-	 {
-		 newSize = this->_size;
-	 }
+	if (this->_size >= from && this->_size >= to)
+	{
+		newSize = this->_size;
+	}
 
 	resize(newSize);
 
@@ -149,8 +170,10 @@ void MatrixGraph::AddEdge(int from, int to)
 
 void MatrixGraph::GetNextVertices(int vertex, std::vector<int>& vertices) const
 {
-	for (size_t i = 0; i < _size; i++) {
-		if (_graph[vertex][i] == true) {
+	for (size_t i = 0; i < _size; i++)
+	{
+		if (_graph[vertex][i] == true)
+		{
 			vertices.push_back(i);
 		}
 	}
@@ -159,8 +182,10 @@ void MatrixGraph::GetNextVertices(int vertex, std::vector<int>& vertices) const
 
 void MatrixGraph::GetPrevVertices(int vertex, std::vector<int>& vertices) const
 {
-	for (size_t i = 0; i < _size; i++) {
-		if (_graph[i][vertex] == true) {
+	for (size_t i = 0; i < _size; i++)
+	{
+		if (_graph[i][vertex] == true)
+		{
 			vertices.push_back(i);
 		}
 	}
