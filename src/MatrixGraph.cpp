@@ -21,7 +21,7 @@ MatrixGraph::~MatrixGraph()
 void MatrixGraph::resize(int newSize)
 {
 	bool** newGraph = nullptr;
-
+	//****************************************
 	if (this->_graph != nullptr)
 	{
 		// создаем временный массив
@@ -30,8 +30,69 @@ void MatrixGraph::resize(int newSize)
 		{
 			newGraph[i] = new bool[newSize];
 		}
+		// заполняем временный массив нулями
+		for (int i = 0; i < newSize; i++)
+		{
+			for (int j = 0; j < newSize; j++)
+			{
+				newGraph[j][i] = false;
+			}
+		}
+		// копируем рабочий массив в новый массив
+		for (int i = 0; i < newSize; i++)
+		{
+			for (int j = 0; j < newSize; j++)
+			{
+				if (i < this->_size && j < this->_size)
+				{
+					newGraph[j][i] = this->_graph[j][i];
+				}
 
+			}
+		}
+		// Удаляем старый массив
+		for (int i = 0; i < this->_size; i++)
+		{
+			delete[] this->_graph[i];
+		}
+		delete[] this->_graph;
+		// Создаем новый рабочий массив
+		_graph = new bool* [newSize];
+		for (int i = 0; i < newSize; i++)
+		{
+			_graph[i] = new bool[newSize];
+		}
+		// заполняем новый рабочий  массив нулями
+		for (int i = 0; i < newSize; i++)
+		{
+			for (int j = 0; j < newSize; j++)
+			{
+				this->_graph[j][i] = false;
+			}
+		}
+		// копируем временный массив в новый рабочий массив
+		for (int i = 0; i < newSize; i++)
+		{
+			for (int j = 0; j < newSize; j++)
+			{
+				if (i < this->_size)
+				{
+					this->_graph[j][i] = newGraph[j][i];
+				}
+			}
+		}
+
+		// Удаляем временный  массив
+		for (int i = 0; i < newSize; i++)
+		{
+			delete[] newGraph[i];
+		}
+		delete[] newGraph;
+		return;
 	}
+	//****************************************
+
+
 	this->_size = newSize;
 	// Увеличиваем вместимость
 	this->_capacity += newSize;
@@ -77,8 +138,6 @@ void MatrixGraph::AddEdge(int from, int to)
 	}
 
 	resize(newSize);
-
-
 
 
 }
