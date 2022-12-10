@@ -14,6 +14,9 @@ int main()
 	myGraph.AddEdge(4,2);
 	myGraph.AddEdge(1,4);
 
+	std::cout << "Number of vertices: " << myGraph.VerticesCount() << std::endl;
+
+
 	myGraph.ShowGraph();
 
 
