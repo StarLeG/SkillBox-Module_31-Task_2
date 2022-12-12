@@ -8,10 +8,9 @@ class MatrixGraph : public IGraph
 {
 public:
 	MatrixGraph();
-
     MatrixGraph(const MatrixGraph& other);
 	MatrixGraph &operator=(const MatrixGraph& other);
-    ~MatrixGraph();
+    virtual ~MatrixGraph();
 
 
 
