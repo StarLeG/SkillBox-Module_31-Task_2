@@ -1,9 +1,11 @@
 #ifndef TASK_31_2_LISTGRAPH_H
 #define TASK_31_2_LISTGRAPH_H
 #include "IGraph.h"
+#include <map>
 
 class ListGraph : public IGraph
 {
+public:
 	ListGraph();
 	ListGraph(const ListGraph& other);
 	ListGraph &operator=(const ListGraph& other);
@@ -27,7 +29,7 @@ class ListGraph : public IGraph
 	virtual void GetPrevVertices(int vertex, std::vector<int>& vertices) const override;
 
 private:
-	bool** list = nullptr;
+	std::map<int, std::vector<int>> _graph;
 };
 
 
