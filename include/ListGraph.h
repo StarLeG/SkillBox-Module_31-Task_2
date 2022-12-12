@@ -2,6 +2,8 @@
 #define TASK_31_2_LISTGRAPH_H
 #include "IGraph.h"
 #include <map>
+#include <string>
+#include <iostream>
 
 class ListGraph : public IGraph
 {
@@ -30,6 +32,7 @@ public:
 
 private:
 	std::map<int, std::vector<int>> _graph;
+	std::map<int, std::vector<int>>::iterator _it = this->_graph.begin();
 };
 
 

@@ -20,5 +20,6 @@ int main()
 	myGraph1.ShowGraph();
 	//***************************************************************************
 	ListGraph myList;
+	myList.ShowGraph();
 	return 0;
 }

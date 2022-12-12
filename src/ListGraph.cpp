@@ -22,11 +22,26 @@ ListGraph::~ListGraph()
 
 void ListGraph::ShowGraph() const
 {
+	if((this->_graph.empty()))
+	{
+		std::cout << "Adjacency list is empty" << std::endl;
+		return;
+	}
 
+	for(; this->_it != this->_graph.end();)
+	{
+		std::cout << this->_it->first << " ";
+		for(int i = 0; i < this->_it->second.size();i++)
+		{
+			std::cout<< this->_it->second[i] << " ";
+		}
+		std::cout << std::endl;
+	}
 }
 
 void ListGraph::AddEdge(int from, int to)
 {
+
 
 }
 
