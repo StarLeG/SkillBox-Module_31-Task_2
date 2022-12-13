@@ -7,7 +7,7 @@ ListGraph::ListGraph()
 
 ListGraph::ListGraph(const ListGraph& other)
 {
-
+	this->_graph = other._graph;
 }
 
 ListGraph& ListGraph::operator=(const ListGraph& other)

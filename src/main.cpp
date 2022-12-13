@@ -24,7 +24,11 @@ int main()
 	myList.AddEdge(1,5);
 	myList.AddEdge(2,4);
 	myList.AddEdge(2,5);
+	myList.AddEdge(2,2);
+	myList.ShowGraph();
+	ListGraph myList_1(myList);
 
+	std::cout << std::endl;
 	myList.ShowGraph();
 
 	return 0;
