@@ -21,5 +21,11 @@ int main()
 	//***************************************************************************
 	ListGraph myList;
 	myList.ShowGraph();
+	myList.AddEdge(1,5);
+	myList.AddEdge(2,4);
+	myList.AddEdge(2,5);
+
+	myList.ShowGraph();
+
 	return 0;
 }

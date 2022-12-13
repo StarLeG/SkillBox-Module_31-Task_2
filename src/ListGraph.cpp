@@ -22,27 +22,32 @@ ListGraph::~ListGraph()
 
 void ListGraph::ShowGraph() const
 {
-	if((this->_graph.empty()))
+	if((this->_graph.size() == 0))
 	{
 		std::cout << "Adjacency list is empty" << std::endl;
 		return;
 	}
 
-	for(; this->_it != this->_graph.end();)
-	{
-		std::cout << this->_it->first << " ";
-		for(int i = 0; i < this->_it->second.size();i++)
-		{
-			std::cout<< this->_it->second[i] << " ";
-		}
-		std::cout << std::endl;
-	}
+
 }
 
 void ListGraph::AddEdge(int from, int to)
 {
+	std::vector<int> buffer_to{to};
 
+	// вставляем вершину
+	std::pair it = this->_graph.emplace(from,buffer_to);
+	// Если вершина не пустая , то добовляем соседа
+	if(!it.second)
+	{
+		it.first->second.emplace_back(to);
+	}
 
+	std::map<int, std::vector<int>>::iterator find_it = this->_graph.find(to);
+	if(find_it == this->_graph.end())
+	{
+		this->_graph[to] = std::vector<int>();
+	}
 }
 
 void ListGraph::GetNextVertices(int vertex, std::vector<int>& vertices) const

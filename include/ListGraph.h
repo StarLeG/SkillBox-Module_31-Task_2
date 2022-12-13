@@ -32,7 +32,7 @@ public:
 
 private:
 	std::map<int, std::vector<int>> _graph;
-	std::map<int, std::vector<int>>::iterator _it = this->_graph.begin();
+
 };
 
 
