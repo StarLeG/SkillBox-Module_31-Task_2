@@ -10,11 +10,6 @@ ListGraph::ListGraph(const ListGraph& other)
 	this->_graph = other._graph;
 }
 
-ListGraph& ListGraph::operator=(const ListGraph& other)
-{
-	return* this;
-}
-
 ListGraph::~ListGraph()
 {
 
@@ -29,7 +24,7 @@ void ListGraph::ShowGraph() const
 		return;
 	}
 
-	for (auto it= _graph.begin();it != _graph.end();it++)
+	for (auto it= this->_graph.begin();it != this->_graph.end();it++)
 	{
 		std::cout << (*it).first << ": ";
 		for (int j=0; j < (*it).second.size(); j++)
@@ -60,6 +55,14 @@ void ListGraph::AddEdge(int from, int to)
 
 void ListGraph::GetNextVertices(int vertex, std::vector<int>& vertices) const
 {
+	auto it = this->_graph.find(vertex);
+	if (it != this->_graph.end())
+	{
+		for(int i =0; i < (*it).second.size();i++ )
+		{
+			vertices.emplace_back((*it).second[i]);
+		}
+	}
 
 }
 

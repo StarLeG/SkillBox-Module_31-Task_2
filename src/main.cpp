@@ -30,6 +30,10 @@ int main()
 
 	std::cout << std::endl;
 	myList.ShowGraph();
+	std::vector<int> vertices;
+	myList_1.GetNextVertices(2,vertices);
+
+
 
 	return 0;
 }

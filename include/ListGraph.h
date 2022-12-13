@@ -10,7 +10,6 @@ class ListGraph : public IGraph
 public:
 	ListGraph();
 	ListGraph(const ListGraph& other);
-	ListGraph &operator=(const ListGraph& other);
 	virtual ~ListGraph();
 
 	// метод выводит на экран граф
